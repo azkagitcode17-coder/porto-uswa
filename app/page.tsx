@@ -35,12 +35,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyDummyFallbackKey1234567890",
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "uswa-story.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "uswa-story",
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "uswa-story.appspot.com",
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "123456789",
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:123456789:web:abcdef123456"
+  apiKey: "AIzaSyCqj30qnLR-wklP_5_0vHelJg5f2gGWMxs",
+  authDomain: "porto-uswa.firebaseapp.com",
+  projectId: "porto-uswa",
+  storageBucket: "porto-uswa.firebasestorage.app",
+  messagingSenderId: "920311690756",
+  appId: "1:920311690756:web:85a3cc9b58703aef0ce751"
 };
 
 let db: Firestore | null = null;
@@ -48,11 +48,10 @@ let isFirebaseActive = false;
 
 try {
   const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-  if (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
-    db = getFirestore(app);
-    isFirebaseActive = true;
-  }
-} catch {
+  db = getFirestore(app);
+  isFirebaseActive = true;
+} catch (err) {
+  console.warn("Gagal inisialisasi Firebase:", err);
   isFirebaseActive = false;
 }
 
